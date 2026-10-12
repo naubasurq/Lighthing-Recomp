@@ -1,0 +1,8 @@
+out/
+generated/default/
+*.bak*
+*.log
+*.xex
+*.iso
+ffxiii_data/
+generated/
