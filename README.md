@@ -2,7 +2,7 @@
 
 A native port of **Final Fantasy XIII (Xbox 360)** built by statically recompiling the original PowerPC executable to C++ with the [ReXGlue SDK](https://github.com/rexglue/rexglue-sdk). The goal is to run the game natively on modern hardware: desktop Linux first, then Android, and iOS as a long shot.
 
-> **Status: early work in progress, Linux only.** The game boots, gets past the Square Enix logo and renders 3D gameplay with correct textures. It is **not playable yet**: there is no in-game music or effects (only cutscene audio), Lightning's hair and the minimap are corrupted, and characters can flicker.
+> **Status: early work in progress, Linux only.** The game boots, gets past the Square Enix logo and renders 3D gameplay with correct textures. It is **not playable yet**: there is no in-game music or effects (only cutscene audio), and Lightning's hair and the minimap are corrupted.
 
 This repository contains **no game code and no game data**. You need your own copy of the game (see [Legal](#legal)).
 
@@ -11,7 +11,7 @@ This repository contains **no game code and no game data**. You need your own co
 1. Run the Xbox 360 build of Final Fantasy XIII natively on x86-64 Linux.
 2. Fix rendering, audio and stability until the game is fully playable start to finish.
 3. Make the renderer and runtime fast enough for modest hardware.
-4. Port it to **Android** (budget CPUs and SoCs) and, if feasible, **iOS**.
+4. Port it to **Windows**, **Android** (budget CPUs and SoCs) and, if feasible, **iOS**.
 
 ## How it works
 
@@ -27,9 +27,10 @@ This repository contains **no game code and no game data**. You need your own co
 | Boot | Gets past the Square Enix logo and into the game |
 | 3D rendering | Environments and characters draw with correct textures |
 | Textures | Fixed. They were nearly black because of an SDK shader translator bug (see below) |
-| Hair, minimap, character flicker | Broken. Hair draws as flickering multicolored noise, the minimap is corrupted |
+| Hair and minimap | Broken. Hair draws as flickering multicolored noise, the minimap is corrupted |
 | Audio | Cutscene audio only. Music and effects are silent (XMA contexts are created but never kicked) |
 | Stability | Some code paths hit unresolved branches (a manifest fix is pending testing) |
+| Windows | Not started |
 | Android | Not started |
 | iOS | Not started |
 
@@ -55,9 +56,13 @@ There is no completion percentage because nothing has been measured against a fu
 - [x] Boot into the game
 - [x] Fix black textures
 - [x] Fix disappearing characters
+- [x] Improve performance (Release builds now run well)
 - [ ] Working music and effects (XMA)
-- [ ] Fix hair, flicker and minimap
+- [ ] Fix hair and minimap
 - [ ] Complete a full playthrough without crashes
+
+### Windows
+Planned for the future, once the Linux version is stable. The idea is to build with the same SDK on Windows and test the Vulkan renderer on Windows drivers. No work has started.
 
 ### Android
 The plan is to reuse the recompiled code and the Vulkan renderer on Android, targeting budget CPUs and SoCs. This is the hardest goal in the project, so expectations are modest:
