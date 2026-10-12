@@ -2,7 +2,7 @@
 
 A native port of **Final Fantasy XIII (Xbox 360)** built by statically recompiling the original PowerPC executable to C++ with the [ReXGlue SDK](https://github.com/rexglue/rexglue-sdk). The goal is to run the game natively on modern hardware: desktop Linux first, then Android, and iOS as a long shot.
 
-> **Status: early work in progress, Linux only.** The game boots, gets past the Square Enix logo and renders 3D gameplay with correct textures. It is **not playable yet**: there is no in-game music or effects (only cutscene audio), Lightning's hair and the minimap are corrupted, characters can flicker, and performance is poor.
+> **Status: early work in progress, Linux only.** The game boots, gets past the Square Enix logo and renders 3D gameplay with correct textures. It is **not playable yet**: there is no in-game music or effects (only cutscene audio), Lightning's hair and the minimap are corrupted, and characters can flicker.
 
 This repository contains **no game code and no game data**. You need your own copy of the game (see [Legal](#legal)).
 
@@ -29,12 +29,11 @@ This repository contains **no game code and no game data**. You need your own co
 | Textures | Fixed. They were nearly black because of an SDK shader translator bug (see below) |
 | Hair, minimap, character flicker | Broken. Hair draws as flickering multicolored noise, the minimap is corrupted |
 | Audio | Cutscene audio only. Music and effects are silent (XMA contexts are created but never kicked) |
-| Performance | Poor. Stutters, still to be profiled |
 | Stability | Some code paths hit unresolved branches (a manifest fix is pending testing) |
 | Android | Not started |
 | iOS | Not started |
 
-There is no completion percentage because nothing has been measured against a full playthrough. Roughly: the engine runs and draws the game world, and everything after that (audio, polish, performance, other platforms) is still ahead.
+There is no completion percentage because nothing has been measured against a full playthrough. Roughly: the engine runs and draws the game world, and everything after that (audio, polish, other platforms) is still ahead.
 
 ## Fixes so far
 
@@ -48,8 +47,7 @@ There is no completion percentage because nothing has been measured against a fu
 - **Unresolved branch near `0x8257CC98`:** a manifest entry split a loop into two functions and the codegen emitted a fatal unresolved branch, which killed the game. A fix is in the manifest and is being tested.
 - **Hair:** flickering multicolored noise on Lightning's hair. Probably a texture format, render target or vertex fetch problem.
 - **Minimap:** corrupted. Probably related to render-to-texture.
-- **Stutter:** waits in the runtime poll with 1 ms sleeps, adding latency to every synchronization.
-- **Debug builds** are far too slow to judge anything. Always test with the Release preset.
+- Use the Release preset: Debug builds are much slower.
 
 ## Roadmap
 
@@ -59,8 +57,6 @@ There is no completion percentage because nothing has been measured against a fu
 - [x] Fix disappearing characters
 - [ ] Working music and effects (XMA)
 - [ ] Fix hair, flicker and minimap
-- [ ] Replace polling waits with blocking waits
-- [ ] Pipeline cache to remove shader compilation stutter
 - [ ] Complete a full playthrough without crashes
 
 ### Android
@@ -131,7 +127,7 @@ Useful flags: `--log_file=<path>`, `--log_verbose=true`, `--log_noisy=true` (nee
 
 ## Contributing
 
-Bug reports are most useful with a RenderDoc capture, a log file and a description of what you see on screen. The areas where help matters most are the shader translator, XMA audio and the runtime wait implementation.
+Bug reports are most useful with a RenderDoc capture, a log file and a description of what you see on screen. The areas where help matters most are the shader translator and XMA audio.
 
 ## Legal
 
