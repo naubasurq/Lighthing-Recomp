@@ -1,6 +1,6 @@
 # Lighthing-Recomp
 
-A native port of **Final Fantasy XIII (Xbox 360)** built by statically recompiling the original PowerPC executable to C++ with the [ReXGlue SDK](https://github.com/rexglue/rexglue-sdk). The goal is to run the game natively on modern hardware: desktop Linux first, then Windows,Android, and iOS as a long shot.
+A native port of **Final Fantasy XIII (Xbox 360)** built by statically recompiling the original PowerPC executable to C++ with the [ReXGlue SDK](https://github.com/rexglue/rexglue-sdk). The goal is to run the game natively on modern hardware: desktop Linux first, then Windows, Android, and iOS as a long shot.
 
 > **Status: early work in progress, Linux only.** The game boots, gets past the Square Enix logo and renders 3D gameplay with correct textures. It is **not playable yet**: there is no in-game music or effects (only cutscene audio), and Lightning's hair and the minimap are corrupted.
 
