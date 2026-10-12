@@ -11,7 +11,7 @@ This repository contains **no game code and no game data**. You need your own co
 1. Run the Xbox 360 build of Final Fantasy XIII natively on x86-64 Linux.
 2. Fix rendering, audio and stability until the game is fully playable start to finish.
 3. Make the renderer and runtime fast enough for modest hardware.
-4. Port it to **Android** (mid-range SoCs) and, if feasible, **iOS**.
+4. Port it to **Android** (budget CPUs and SoCs) and, if feasible, **iOS**.
 
 ## How it works
 
@@ -57,7 +57,6 @@ There is no completion percentage because nothing has been measured against a fu
 - [x] Boot into the game
 - [x] Fix black textures
 - [x] Fix disappearing characters
-- [ ] Resolve the unresolved branch near `0x8257CC98`
 - [ ] Working music and effects (XMA)
 - [ ] Fix hair, flicker and minimap
 - [ ] Replace polling waits with blocking waits
@@ -65,7 +64,7 @@ There is no completion percentage because nothing has been measured against a fu
 - [ ] Complete a full playthrough without crashes
 
 ### Android
-The plan is to reuse the recompiled code and the Vulkan renderer on Android, targeting mid-range chips such as the Helio G99. This is the hardest goal in the project, so expectations are modest:
+The plan is to reuse the recompiled code and the Vulkan renderer on Android, targeting budget CPUs and SoCs. This is the hardest goal in the project, so expectations are modest:
 - Mobile Vulkan drivers may lack extensions the renderer relies on, which would need alternative render target paths.
 - The desktop build uses around 1.6 GB of resident memory.
 - Low-end hardware may never reach a playable frame rate.
